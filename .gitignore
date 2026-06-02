@@ -1,0 +1,6 @@
+# Python関連の除外設定
+__pycache__/
+*.py[cod]
+venv/
+.env
+.DS_Store
