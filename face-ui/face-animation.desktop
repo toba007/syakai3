@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Face Animation
-Comment=Run face animation in fullscreen
-Exec=python3 face_app.py
-Path=/home/pi/face-ui
-Terminal=false
-Categories=Utility;
