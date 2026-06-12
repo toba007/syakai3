@@ -1,6 +1,26 @@
-# Python関連の除外設定
+# 秘密情報 (APIキー) は絶対にcommitしない
+SS_tobatti/tobatti/config.txt
+**/.env
+
+# 実行時に生成されるファイル
+SS_tobatti/tobatti/clock_report/time_speech.txt
+SS_tobatti/tobatti/news_report/news_speech.txt
+SS_tobatti/tobatti/weather_report/weather_speech.txt
+**/weather_speech.txt
+**/news_speech.txt
+**/chat_history*.json
+**/seen_news.json
+**/conversation_history.jsonl
+**/school_overview_cache.txt
+**/face_state.json
+
+# Wordの一時ロックファイル
+~$*.docx
+**/~$*.docx
+
+# ROS2 / Python
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
 __pycache__/
-*.py[cod]
-venv/
-.env
-.DS_Store
+**/__pycache__/

@@ -82,7 +82,7 @@ def build_speech_text(titles):
 
 
 def fetch_japan_news(api_key, output_file="news_speech.txt"):
-    titles = fetch_newsapi_titles(api_key)
+    titles = fetch_newsapi_titles(api_key) or []
 
     if len(titles) < 3:
         titles = fetch_nhk_rss_titles()
@@ -102,5 +102,5 @@ def fetch_japan_news(api_key, output_file="news_speech.txt"):
 
 
 if __name__ == "__main__":
-    api_key = "0685b528fd104972aeeed4b99ec8c4f6"
+    api_key = os.environ.get("NEWS_API_KEY", "")
     fetch_japan_news(api_key)

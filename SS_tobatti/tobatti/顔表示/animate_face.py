@@ -34,7 +34,7 @@ class RandomFaceAnimator:
         self.mouth_state = "smile"
 
     def _next_blink_frame(self, current_frame: int) -> int:
-        return current_frame + self.random.randint(35, 95)
+        return current_frame + self.random.randint(25, 80)
 
     def _choose_mouth(self) -> str:
         return self.random.choices(
@@ -115,7 +115,7 @@ def draw_eye(
 
 
 def draw_eyebrow(image: np.ndarray, center: tuple[int, int], emotion: str, scale: float) -> None:
-    if emotion not in {"angry", "sad"}:
+    if emotion not in {"angry", "sad", "thinking"}:
         return
 
     cx, cy = center
@@ -124,7 +124,12 @@ def draw_eyebrow(image: np.ndarray, center: tuple[int, int], emotion: str, scale
     x1 = cx - int(36 * scale)
     x2 = cx + int(36 * scale)
 
-    if emotion == "angry":
+    if emotion == "thinking":
+        if cx < image.shape[1] // 2:
+            p1, p2 = (x1, y - int(4 * scale)), (x2, y + int(2 * scale))
+        else:
+            p1, p2 = (x1, y + int(2 * scale)), (x2, y - int(4 * scale))
+    elif emotion == "angry":
         if cx < image.shape[1] // 2:
             p1, p2 = (x1, y - int(10 * scale)), (x2, y + int(12 * scale))
         else:
@@ -161,6 +166,48 @@ def draw_mouth(image: np.ndarray, state: str, scale: float, emotion: str = "neut
             0,
             200,
             340,
+            INK_COLOR,
+            thickness,
+            cv2.LINE_AA,
+        )
+        return
+
+    if emotion == "happy":
+        cv2.ellipse(
+            image,
+            center,
+            (int(86 * scale), int(56 * scale)),
+            0,
+            18,
+            162,
+            INK_COLOR,
+            thickness,
+            cv2.LINE_AA,
+        )
+        return
+
+    if emotion == "thinking":
+        cv2.ellipse(
+            image,
+            (center[0], center[1] + int(8 * scale)),
+            (int(28 * scale), int(22 * scale)),
+            0,
+            0,
+            360,
+            INK_COLOR,
+            thickness,
+            cv2.LINE_AA,
+        )
+        return
+
+    if emotion == "explain":
+        cv2.ellipse(
+            image,
+            center,
+            (int(46 * scale), int(36 * scale)),
+            -8,
+            0,
+            360,
             INK_COLOR,
             thickness,
             cv2.LINE_AA,

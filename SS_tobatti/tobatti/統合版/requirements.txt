@@ -1,0 +1,9 @@
+numpy
+opencv-python
+pillow
+sounddevice
+SpeechRecognition
+pyttsx3
+requests
+pyserial
+google-genai

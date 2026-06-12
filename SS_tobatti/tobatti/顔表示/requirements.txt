@@ -1,0 +1,8 @@
+numpy
+opencv-python
+pillow
+google-generativeai
+pyserial
+pyrealsense2
+pyttsx3
+requests

@@ -1,0 +1,8 @@
+google-generativeai
+numpy
+opencv-python
+pillow
+pyserial
+pyttsx3
+requests
+sounddevice
