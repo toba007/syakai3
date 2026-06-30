@@ -40,6 +40,26 @@ $env:ESP32_PORT="COM3"
 
 `NEWS_API_KEY`は未設定でもNHK RSSへフォールバックします。
 
+## ニュース読み上げ
+
+`SS_tobatti/tobatti/news_report/fetch_japan_news.py` はニュースをSQLite
+キャッシュ `news_cache.sqlite3` に保存し、表示するたびに1件ずつ読み上げ文を
+生成します。表示したニュースはキャッシュと表示キューから外し、その時点の
+キャッシュに存在しないニュースを取得して補充するため、2回目以降の表示では
+同じニュースが続かないように入れ替わります。
+
+手動で1回だけ更新する場合:
+
+```powershell
+SS_tobatti\tobatti\news_report\news_once.bat
+```
+
+継続的に補充する場合:
+
+```powershell
+SS_tobatti\tobatti\news_report\news_watch.bat
+```
+
 ## 実行
 
 顔UIを常時表示しながら、制御プログラムを並行起動する場合:
